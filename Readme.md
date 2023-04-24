@@ -13,7 +13,7 @@ You may contribute to this library, however all contributions will share the sam
 Right now only sqlite is officially supported by the Stilt Fox™ Universal library, however any database can be supported as long as you inheret the StiltFox::UniversalLibrary::DatabaseConnection class. This is an abstract class and you will need to implement all of the methods for your database of choice.
 
 ### Multi-Threading
-Right now the multi threading capabilities of this library are very crude. Future support for controlling the number of threads and paging the sql queries is planned for future releases. This will require some updates to the underlying UiniversalLibrary as well. However, right now she's good enough to run so let's kick back and enjoy some iterative code design.
+Right now the multi threading capabilities of this library are very crude. Future support for controlling the number of threads and paging the sql queries is planned for future releases. This will require some updates to the underlying UiniversalLibrary as well. However, right now it's good enough to run so let's kick back and enjoy some iterative code design.
 
 ### Memory Management
 Stilt Fox™ RDF Shredder works on the intire dataset while it is in memory. This design decision was made with cloud computing in mind. Saving to file after a query would hurt performance when inverse properties are bing updated; this is because it would require extra disk IO to save, then re open each previous reccord every time it gets referenced.
