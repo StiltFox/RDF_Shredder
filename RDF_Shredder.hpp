@@ -26,6 +26,7 @@ namespace StiltFox
         OntologyFile(std::string filePath);
         nlohmann::json getContext(std::string owlClass);
         std::string getInverse(std::string objectProperty);
+        std::string getRange(std::string objectProperty);
         bool isPropertyData(std::string objectProperty);
     };
 

@@ -43,7 +43,21 @@ void runQuery(string query, RDF_Map rdfMap, DatabaseConnection* connection, Onto
                 {
                     if (ontologyFile->isPropertyData(propertyId)) 
                     {
-                        (*ld)[results[x][rdfMap.owl_id]][propertyId] = results[x][columnName];
+                        if (ontologyFile->getRange(propertyId) != "string")
+                        {
+                            try
+                            {
+                                (*ld)[results[x][rdfMap.owl_id]][propertyId] = stoi(results[x][columnName]);
+                            }
+                            catch(...)
+                            {
+                                // do nothing. Allow value to not be set.
+                            }
+                        }
+                        else
+                        {
+                            (*ld)[results[x][rdfMap.owl_id]][propertyId] = results[x][columnName];
+                        }
                     }
                     else
                     {
@@ -145,4 +159,9 @@ string OntologyFile::getInverse(string objectProperty)
 bool OntologyFile::isPropertyData(string objectProperty)
 {
     return propertyData[objectProperty].isDataProperty;
+}
+
+string OntologyFile::getRange(string objectProperty)
+{
+    return propertyData[objectProperty].range;
 }
